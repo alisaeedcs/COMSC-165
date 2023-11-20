@@ -1,0 +1,40 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+string encrypt();
+void write(string);
+
+int main() {
+
+  return 0;
+}
+
+//encrypt
+string encrypt() {
+  ifstream in("raw.txt");
+  string encrypted = "";
+  if (in.fail()) {
+    cout << "Error, please try again" << endl;
+  }
+  else {
+    char c;
+    while(in.get(c)) {
+      //convert from ASCII Character to value
+      c = int(c);
+      c += 10; // change ASCII Value to increase by 10
+      encrypted.push_back(c); //add to string
+    }
+  }
+  in.close();
+  return encrypted;
+}
+
+//write to new file
+void write(string encrypted) {
+  ofstream out("encrypted.txt");
+  out << encrypted;
+  out.close();
+}
